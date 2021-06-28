@@ -3,11 +3,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) => {
   let response
-  const {url} = endpoint
+  const url = endpoint.url
   response = await fetch(url + "/products")
-  console.log(response)
-  const data = await response.json();
-  let filtered = data.filter(word => word.quote_currency === "USD");
+  let data = await response.json();
+  endpoint.pairs = data
+  // let filtered = data.filter(word => word.quote_currency === "USD");
+  let filtered = endpoint.pairs.filter((pair) => {
+    if (pair.quote_currency === "USD") {
+      return pair;
+    }
+  });
   filtered = filtered.sort((a, b) => {
     if (a.base_currency < b.base_currency) {
       return -1;
@@ -18,7 +23,6 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) 
     return 0;
   });
   console.log(filtered)
-  console.log(data)
   return filtered
 })
 
@@ -32,36 +36,6 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    reactionAdded(state, action) {
-      const { postId, reaction } = action.payload
-      const existingPost = state.posts.find(post => post.id === postId)
-      if (existingPost) {
-        existingPost.reactions[reaction]++
-      }
-    },
-    postAdded: {
-        reducer(state, action) {
-          state.posts.push(action.payload)
-        },
-        prepare(title, content, userId) {
-          return {
-            payload: {
-              date: new Date().toISOString(),
-              title,
-              content,
-              user: userId
-            }
-          }
-        }
-      },
-      postUpdated(state, action) {
-        const { id, title, content } = action.payload
-        const existingPost = state.posts.find(post => post.id === id)
-        if (existingPost) {
-          existingPost.title = title
-          existingPost.content = content
-        }
-      }
     },
     extraReducers: {
       [fetchPosts.pending]: (state, action) => {
