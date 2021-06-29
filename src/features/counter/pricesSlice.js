@@ -1,13 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
+import { formatData } from "../../utils";
 
 export const fetchPrice = createAsyncThunk('prices/fetchPrices', async (endpoint) => {
   let response
-  const {url} = endpoint
-  response = await fetch(url)
+  console.log(endpoint.historicalDataURL)
+  response = await fetch(endpoint.historicalDataURL)
+  console.log(response)
   const data = await response.json();
   console.log(data)
-  return data
+  let formattedData = formatData(data);
+  return formattedData
 })
 
 const initialState = {
@@ -58,7 +60,7 @@ const postsSlice = createSlice({
       [fetchPrice.fulfilled]: (state, action) => {
         state.status = 'succeeded'
         // Add any fetched posts to the array
-        state.posts = state.posts.concat(action.payload)
+        state.posts = state.prices.concat(action.payload)
       },
       [fetchPrice.rejected]: (state, action) => {
         state.status = 'failed'

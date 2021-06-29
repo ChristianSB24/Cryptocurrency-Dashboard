@@ -2,13 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) => {
-  let response
-  const url = endpoint.url
-  response = await fetch(url + "/products")
+  console.log(endpoint)
+  let response = await fetch(endpoint + "/products")
   let data = await response.json();
-  endpoint.pairs = data
-  // let filtered = data.filter(word => word.quote_currency === "USD");
-  let filtered = endpoint.pairs.filter((pair) => {
+  let filtered = data.filter((pair) => {
     if (pair.quote_currency === "USD") {
       return pair;
     }
@@ -22,7 +19,6 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) 
       }
     return 0;
   });
-  console.log(filtered)
   return filtered
 })
 
