@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { Line } from "react-chartjs-2";
 
 function Dashboard({ price, data }) {
+  console.log(price)
+  console.log(data)
   const opts = {
     tooltips: {
       intersect: false,

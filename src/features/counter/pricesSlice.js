@@ -7,7 +7,6 @@ export const fetchPrice = createAsyncThunk('prices/fetchPrices', async (endpoint
   response = await fetch(endpoint.historicalDataURL)
   console.log(response)
   const data = await response.json();
-  console.log(data)
   let formattedData = formatData(data);
   return formattedData
 })
