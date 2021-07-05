@@ -1,10 +1,10 @@
 import React from 'react';
-import { PostsList } from './features/counter/Counter';
+import { CryptoList } from './features/counter/Counter';
 
 function App() {
   return (
     <div>
-        <PostsList/>
+        <CryptoList/>
     </div>
   );
 }

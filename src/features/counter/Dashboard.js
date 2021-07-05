@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
+import "../../index.css";
 
 function Dashboard({ price, data }) {
-  console.log(price)
-  console.log(data)
+  let history = JSON.parse(JSON.stringify(data))
+
   const opts = {
     tooltips: {
       intersect: false,
@@ -20,7 +21,7 @@ function Dashboard({ price, data }) {
       <h2>{`$${price}`}</h2>
 
       <div className="chart-container">
-        <Line data={data} options={opts} />
+        <Line data={history} options={opts} />
       </div>
     </div>
   );
