@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import "../../index.css";
 
 function Dashboard({ price, data }) {
-  let history = JSON.parse(JSON.stringify(data))
+  let pastData = JSON.parse(JSON.stringify(data))
 
   const opts = {
     tooltips: {
@@ -21,7 +21,7 @@ function Dashboard({ price, data }) {
       <h2>{`$${price}`}</h2>
 
       <div className="chart-container">
-        <Line data={history} options={opts} />
+        <Line data={pastData} options={opts} />
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-let pairs =[]
-
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) => {
   console.log(endpoint)
   let response = await fetch(endpoint + "/products")
   let data = await response.json();
-  pairs = data
-  let filtered = pairs.filter((pair) => {
+  let filtered = data.filter((pair) => {
     if (pair.quote_currency === "USD") {
       return pair;
+    }
+    else {
+      return null
     }
   });
   filtered = filtered.sort((a, b) => {

@@ -25,8 +25,6 @@ const pricesSlice = createSlice({
       },
       [fetchPrice.fulfilled]: (state, action) => {
         state.status = 'succeeded'
-        // Add any fetched posts to the array
-        // state.prices = state.prices.concat(action.payload)
         state.prices = action.payload
       },
       [fetchPrice.rejected]: (state, action) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CryptoList } from './features/counter/Counter';
+import { CryptoList } from './features/counter/Crypto'
 
 function App() {
   return (
