@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) => {
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async (endpoint) => {
   let response = await fetch(endpoint + "/products")
   let data = await response.json();
   console.log(data)
@@ -28,26 +28,26 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (endpoint) 
 })
 
 const initialState = {
-  posts: [],
+  products: [],
   status: 'idle',
   error: null
 }
 
-const postsSlice = createSlice({
-  name: 'posts',
+const productsSlice = createSlice({
+  name: 'products',
   initialState,
   reducers: {
     },
     extraReducers: {
-      [fetchPosts.pending]: (state, action) => {
+      [fetchProducts.pending]: (state, action) => {
         state.status = 'loading'
       },
-      [fetchPosts.fulfilled]: (state, action) => {
+      [fetchProducts.fulfilled]: (state, action) => {
         state.status = 'succeeded'
         // Add any fetched posts to the array
-        state.posts = state.posts.concat(action.payload)
+        state.products = state.products.concat(action.payload)
       },
-      [fetchPosts.rejected]: (state, action) => {
+      [fetchProducts.rejected]: (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
       }
@@ -55,11 +55,11 @@ const postsSlice = createSlice({
 
 })
 
-export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions
+export const {  productsAdded } = productsSlice.actions
 
-export default postsSlice.reducer
+export default productsSlice.reducer
 
-export const selectAllPosts = state => state.posts.posts
+export const selectAllProducts = state => state.products.products
 
-export const selectPostById = (state, postId) =>
-  state.posts.posts.find(post => post.id === postId)
+export const selectProductById = (state, productId) =>
+  state.products.products.find(product => product.id === productId)

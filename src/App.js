@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import Slider from "react-slick";
 import "./index.css";
-import { selectAllPosts, fetchPosts } from './features/postsSlice'
-import {selectAllPrices, fetchPrice} from './features/pricesSlice'
+import { selectAllProducts, fetchProducts } from './features/productsSlice'
+import {selectAllPastdata, fetchPastdata} from './features/pastdataSlice'
 import Dashboard from "./features/Dashboard";
 import {SampleNextArrow, SamplePrevArrow} from "./features/Arrows"
 import Logo from './Logos/logo.js'
@@ -12,9 +12,9 @@ export const CryptoList = () => {
   const [pair, setpair] = useState('');
   const [price, setprice] = useState("0.00");
   const dispatch = useDispatch()
-  const posts = useSelector(selectAllPosts)
-  const postStatus = useSelector(state => state.posts.status)
-  const prices = useSelector(selectAllPrices)
+  const products = useSelector(selectAllProducts)
+  const productStatus = useSelector(state => state.products.status)
+  const pastdata = useSelector(selectAllPastdata)
 
   const settings = {
     className: "center",
@@ -40,8 +40,8 @@ export const CryptoList = () => {
     ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
   }, [])
 
-  if (postStatus === 'idle') {
-    dispatch(fetchPosts(url))
+  if (productStatus === 'idle') {
+    dispatch(fetchProducts(url))
   }
 
   useEffect(() => {
@@ -61,8 +61,8 @@ export const CryptoList = () => {
     let jsonMsg = JSON.stringify(msg);
     ws.current.send(jsonMsg);
 
-    dispatch(fetchPrice(`${url}/products/${pair}/candles?granularity=86400`))
-    
+    dispatch(fetchPastdata(`${url}/products/${pair}/candles?granularity=86400`))
+
     ws.current.onmessage = (e) => {
       let data = JSON.parse(e.data);
       if (data.type !== "ticker") {
@@ -90,7 +90,7 @@ export const CryptoList = () => {
   return (
     <div className='container'>
         <Slider {...settings} value={pair}>
-        {posts.map((cur, idx) => {
+        {products.map((cur, idx) => {
             return (
                 <div key={idx}>
                     <Logo pair={cur.base_currency}/>
@@ -101,7 +101,7 @@ export const CryptoList = () => {
             );
         })}
         </Slider>
-      <Dashboard price={price} data={prices}/>
+      <Dashboard price={price} data={pastdata}/>
       <div className='my-5 py-5'>
         <h5> Follow this link to set up alerts for this cryptocurrency and others. </h5>
         <p> This service will be provided in future developments of this application. </p>
