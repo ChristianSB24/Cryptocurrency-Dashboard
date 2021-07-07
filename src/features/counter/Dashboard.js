@@ -14,7 +14,7 @@ function Dashboard({ price, data }) {
     maintainAspectRatio: false
   };
   if (price === "0.00") {
-    return <h2>please select a currency pair</h2>;
+    return <h3>Please select a currency pair</h3>;
   }
   return (
     <div className="dashboard">

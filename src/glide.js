@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectAllPosts, fetchPosts } from './postsSlice'
-import {selectAllPrices, fetchPrice} from './pricesSlice'
-import Dashboard from "./Dashboard";
+import { selectAllPosts, fetchPosts } from './features/counter/postsSlice'
+import {selectAllPrices, fetchPrice} from './features/counter/pricesSlice'
+import Dashboard from "./features/counter/Dashboard";
 import Slider from "react-slick";
-import "../../index.css";
-import Logo from '../../logo.js'
+import "./index.css";
+import Logo from './logo.js'
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -29,7 +29,7 @@ function SampleNextArrow(props) {
     );
   }
 
-export const CryptoList = () => {
+export const Test = () => {
   const [pair, setpair] = useState('');
   const [price, setprice] = useState("0.00");
   const dispatch = useDispatch()

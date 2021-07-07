@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { formatData } from "../../utils";
 
 export const fetchPrice = createAsyncThunk('prices/fetchPrices', async (endpoint) => {
+  console.log(endpoint)
   let response = await fetch(endpoint)
   const data = await response.json();
   let formattedData = formatData(data);
