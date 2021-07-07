@@ -115,7 +115,7 @@ export const CryptoList = () => {
     ws.current.send(unsub);
     setpair(e.target.value);
   };
-  
+
   return (
     <div className='container'>
         <Slider {...settings} value={pair} onChange={handleSelect}>
@@ -131,6 +131,11 @@ export const CryptoList = () => {
         })}
         </Slider>
       <Dashboard price={price} data={prices}/>
+      <div className='my-5 py-5'>
+        <h5> Follow this link to set up email alerts for this cryptocurrency and others. </h5>
+        <p> This service will provided in future developments of this application. </p>
+        <a href="https://cryptocurrencyalerting.com/price-alert.html" class="btn btn-primary" role="button">Crypto Alerts</a>
+      </div>
     </div>
   );
 }
