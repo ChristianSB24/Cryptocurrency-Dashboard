@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postsReducer from '../features/counter/postsSlice';
-import pricesReducer from '../features/counter/pricesSlice';
+import postsReducer from '../features/postsSlice';
+import pricesReducer from '../features/pricesSlice';
 
 export const store = configureStore({
   reducer: {

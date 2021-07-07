@@ -1,9 +1,10 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import "../../index.css";
+import "../index.css";
 
 function Dashboard({ price, data }) {
   let pastData = JSON.parse(JSON.stringify(data))
+  console.log(pastData)
 
   const opts = {
     tooltips: {

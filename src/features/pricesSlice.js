@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { formatData } from "../../utils";
+import { formatData } from "../utils";
 
 export const fetchPrice = createAsyncThunk('prices/fetchPrices', async (endpoint) => {
   console.log(endpoint)
