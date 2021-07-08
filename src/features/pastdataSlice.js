@@ -1,11 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { formatData } from "../utils";
+import { formatDay, formatHour, formatFifteen, formatMinute } from "../utils";
 
 export const fetchPastdata = createAsyncThunk('pastdata/fetchPastdata', async (endpoint) => {
   console.log(endpoint)
-  let response = await fetch(endpoint)
+  let response = await fetch(endpoint.historicalurl)
   const data = await response.json();
-  let formattedData = formatData(data);
+  let formattedData
+  if (endpoint.timesegment === `day`) {
+    formattedData = formatDay(data)
+  }
+  if (endpoint.timesegment === `hour`) {
+    formattedData = formatHour(data)
+  }
+  if (endpoint.timesegment === `fifteen`) {
+    formattedData = formatFifteen(data)
+  }
+  if (endpoint.timesegment === `minute`) {
+    formattedData = formatMinute(data)
+  }
   return formattedData
 })
 

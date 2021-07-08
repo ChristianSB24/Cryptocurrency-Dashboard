@@ -5,6 +5,7 @@ import "../index.css";
 function Dashboard({ price, data }) {
   let pastData = JSON.parse(JSON.stringify(data))
   console.log(pastData)
+  console.log(price)
 
   const opts = {
     tooltips: {
