@@ -60,14 +60,16 @@ function Dashboard({ price, data, segment}) {
         current.labels.shift()
         timer.current = now.getMinutes()
       }
-      current.labels.push(final)
-      let a = []
-      a = parseFloat(price)
-      let b = current.datasets[0].data.concat(a)
-      current.datasets[0].data = b
+      // This section of code updates chart live but is not as fluid. Chose to go for a more fluid and stable chart that 
+      // updates each minute. Live pricing is still available above the chart.
+      // current.labels.push(final)
+      // let a = []
+      // a = parseFloat(price)
+      // let b = current.datasets[0].data.concat(a)
+      // current.datasets[0].data = b
     }
   }, [price, current.datasets, minuteSeg, current])
-
+  console.log(current.labels)
 
   const opts = {
     tooltips: {

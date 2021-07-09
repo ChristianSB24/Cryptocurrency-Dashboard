@@ -4,8 +4,8 @@ import Slider from "react-slick";
 import "./index.css";
 import { selectAllProducts, fetchProducts } from './features/productsSlice'
 import {selectAllPastdata, fetchPastdata} from './features/pastdataSlice'
-// import Dashboard from "./features/Dashboard";
-import Dashboard from "./features/Dashboard2";
+import Dashboard from "./features/Dashboard";
+// import Dashboard from "./features/Dashboard2";
 import {SampleNextArrow, SamplePrevArrow} from "./features/Arrows"
 import Logo from './Logos/logo.js'
 
@@ -127,6 +127,7 @@ export const CryptoList = () => {
     settimesegment('day')
   }
   return (
+    <>
     <div className='container'>
         <Slider {...settings} value={pair}>
         {products.map((cur, idx) => {
@@ -148,9 +149,12 @@ export const CryptoList = () => {
       <div className='my-5 py-5'>
         <h5> Follow this link to set up alerts for this cryptocurrency and others. </h5>
         <p> This service will be provided in future developments of this application. </p>
-        <a href="https://cryptocurrencyalerting.com/price-alert.html" className="btn btn-outline-success" role="button">Crypto Alerts</a>
+        <a href="https://cryptocurrencyalerting.com/price-alert.html" className="btn btn-outline-success btn-rounded">Crypto Alerts</a>
       </div>
     </div>
+    <footer className='footer--pin d-flex justify-content-center mb-2'> Data provided by Coinbase API 
+    <a href="https://docs.pro.coinbase.com/#market-data" className="mx-2"> https://docs.pro.coinbase.com/#market-data </a> </footer>
+    </>
   );
 }
 
