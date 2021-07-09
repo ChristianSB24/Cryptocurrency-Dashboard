@@ -1,15 +1,11 @@
 import React, {useEffect, useState, useRef} from "react";
-import {selectAllPastdata} from './pastdataSlice'
-import { useSelector } from 'react-redux'
 import { Line } from "react-chartjs-2";
 import "../index.css";
 
 function Dashboard({ price, data, segment}) {
   const [current, setcurrent] = useState([]);
-  const past = useSelector(selectAllPastdata)
   let first = useRef(false);
-  // let test = []
-  console.log(past)
+  let timer = useRef()
   let minuteSeg = false
   if (segment === 'minute') {
     minuteSeg = true
@@ -22,11 +18,10 @@ function Dashboard({ price, data, segment}) {
   useEffect(() => {
     if (!first.current) {
       first.current = true;
+      var x = new Date()
+      timer.current = x.getMinutes()
       return;
     }
-    // if (current.datasets[0] === undefined) {
-    //   return
-    // }
     if (minuteSeg === true) {
       if (current.datasets[0].data.length > 300) {
         current.datasets[0].data.pop()
@@ -35,16 +30,39 @@ function Dashboard({ price, data, segment}) {
         current.labels.pop()
       }
       var now = new Date()
-      let currTime = `${now.getHours()}:${now.getMinutes()}`
-      let x = []
-      x = currTime
-      console.log(String(x))
-      let z = current.labels.concat(String(x))
-      current.labels = z
-      console.log(current.labels)
+      let minute 
+      if (now.getMinutes() < 10) {
+        minute = '0' + now.getMinutes()
+      }
+      else {
+        minute = now.getMinutes();
+      }
+      let hour = now.getHours();
+      let final;
+      if (now.getHours() > 12) {
+        hour = (now.getHours() - 12)
+        final = `${hour}:${minute}PM`
+      }
+      else if (now.getHours() === 12) {
+        hour = 12
+        final = `${hour}:${minute}PM`
+      }
+      else if (now.getHours() === 0) {
+        hour = 12
+        final = `${hour}:${minute}AM`
+      }
+      else {
+        final = `${hour}:${minute}AM`
+      }
+      console.log(now.getMinutes())
+      if (timer.current !== now.getMinutes()) {
+        current.labels.push(final)
+        current.labels.shift()
+        timer.current = now.getMinutes()
+      }
+      current.labels.push(final)
       let a = []
       a = parseFloat(price)
-      console.log(a)
       let b = current.datasets[0].data.concat(a)
       current.datasets[0].data = b
     }
@@ -63,7 +81,6 @@ function Dashboard({ price, data, segment}) {
   if (price === "0.00") {
     return <h3>Please select a currency pair</h3>;
   }
-  console.log('here')
   return (
     <div className="dashboard">
       <h2>{`$${price}`}</h2>

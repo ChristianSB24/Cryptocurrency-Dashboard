@@ -41,6 +41,7 @@ export const CryptoList = () => {
 
   useEffect(() => {
     ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
+    console.log('x')
   }, [])
 
   if (productStatus === 'idle') {
@@ -139,8 +140,7 @@ export const CryptoList = () => {
             );
         })}
         </Slider>
-      {/* <Dashboard price={price} data={pastdata}/> */}
-      <Dashboard price={price} data={pastdata}/>
+      <Dashboard price={price} data={pastdata} segment={timesegment}/>
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleMinute}> 5H </button>}
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleFifteen}> 3D </button>}
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleHour}> 2W </button>}

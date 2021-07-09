@@ -126,7 +126,6 @@ export const CryptoList = () => {
     event.preventDefault()
     settimesegment('day')
   }
-  console.log('here')
   return (
     <div className='container'>
         <Slider {...settings} value={pair}>
