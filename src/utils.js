@@ -5,9 +5,12 @@ export const formatDay = (data) => {
         {
           label: "Price",
           data: [],
-          backgroundColor: "rgb(255, 99, 132, 0.8)",
-          borderColor: "rgba(255, 99, 132, 0.2)",
-          fill: false
+          backgroundColor: "rgb(4, 151, 4, 1)",
+          borderColor: "rgba(4, 151, 4, 1)",
+          fill: false,
+          pointHoverRadius: 3,
+          radius: 0,
+          tension: 0.1,
         }
       ]
     };
@@ -40,10 +43,13 @@ export const formatHour = (data) => {
     datasets: [
       {
         label: "Price",
-        data: [],
-        backgroundColor: "rgb(255, 99, 132, 0.8)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-        fill: false
+          data: [],
+          backgroundColor: "rgb(4, 151, 4, 1)",
+          borderColor: "rgba(4, 151, 4, 1)",
+          fill: false,
+          pointHoverRadius: 3,
+          radius: 0,
+          tension: 0.1,
       }
     ]
   };
@@ -90,10 +96,13 @@ export const formatFifteen = (data) => {
     datasets: [
       {
         label: "Price",
-        data: [],
-        backgroundColor: "rgb(255, 99, 132, 0.8)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-        fill: false
+          data: [],
+          backgroundColor: "rgb(4, 151, 4, 1)",
+          borderColor: "rgba(4, 151, 4, 1)",
+          fill: false,
+          pointHoverRadius: 3,
+          radius: 0,
+          tension: 0.1,
       }
     ]
   };
@@ -140,10 +149,13 @@ export const formatMinute = (data) => {
     datasets: [
       {
         label: "Price",
-        data: [],
-        backgroundColor: "rgb(255, 99, 132, 0.8)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-        fill: false
+          data: [],
+          backgroundColor: "rgb(4, 151, 4, 1)",
+          borderColor: "rgba(4, 151, 4, 1)",
+          fill: false,
+          pointHoverRadius: 3,
+          radius: 0,
+          tension: 0.1,
       }
     ]
   };
@@ -151,7 +163,13 @@ export const formatMinute = (data) => {
   let dates = data.map((val) => {
     const ts = val[0];
     let date = new Date(ts * 1000);
-    let minute = date.getMinutes();
+    let minute 
+    if (date.getMinutes() < 10) {
+      minute = '0' + date.getMinutes()
+    }
+    else {
+      minute = date.getMinutes();
+    }
     let hour = date.getHours();
     let final;
     if (date.getHours() > 12) {
@@ -170,9 +188,6 @@ export const formatMinute = (data) => {
       final = `${hour}:${minute}AM`
     }
     return final;
-
-    // let final = `${hour}:${minute}`;
-    // return final;
   });
 
   let priceArr = data.map((val) => {

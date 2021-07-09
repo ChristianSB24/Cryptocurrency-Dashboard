@@ -4,7 +4,8 @@ import Slider from "react-slick";
 import "./index.css";
 import { selectAllProducts, fetchProducts } from './features/productsSlice'
 import {selectAllPastdata, fetchPastdata} from './features/pastdataSlice'
-import Dashboard from "./features/Dashboard";
+// import Dashboard from "./features/Dashboard";
+import Dashboard from "./features/Dashboard2";
 import {SampleNextArrow, SamplePrevArrow} from "./features/Arrows"
 import Logo from './Logos/logo.js'
 
@@ -138,6 +139,7 @@ export const CryptoList = () => {
             );
         })}
         </Slider>
+      {/* <Dashboard price={price} data={pastdata}/> */}
       <Dashboard price={price} data={pastdata}/>
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleMinute}> 5H </button>}
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleFifteen}> 3D </button>}

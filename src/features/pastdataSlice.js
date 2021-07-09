@@ -5,6 +5,7 @@ export const fetchPastdata = createAsyncThunk('pastdata/fetchPastdata', async (e
   console.log(endpoint)
   let response = await fetch(endpoint.historicalurl)
   const data = await response.json();
+  console.log(data)
   let formattedData
   if (endpoint.timesegment === `day`) {
     formattedData = formatDay(data)

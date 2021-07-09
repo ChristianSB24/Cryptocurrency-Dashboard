@@ -4,7 +4,8 @@ import Slider from "react-slick";
 import "./index.css";
 import { selectAllProducts, fetchProducts } from './features/productsSlice'
 import {selectAllPastdata, fetchPastdata} from './features/pastdataSlice'
-import Dashboard from "./features/Dashboard";
+// import Dashboard from "./features/Dashboard";
+import Dashboard from "./features/Dashboard2";
 import {SampleNextArrow, SamplePrevArrow} from "./features/Arrows"
 import Logo from './Logos/logo.js'
 
@@ -40,6 +41,7 @@ export const CryptoList = () => {
 
   useEffect(() => {
     ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
+    console.log('x')
   }, [])
 
   if (productStatus === 'idle') {
@@ -124,6 +126,7 @@ export const CryptoList = () => {
     event.preventDefault()
     settimesegment('day')
   }
+  console.log('here')
   return (
     <div className='container'>
         <Slider {...settings} value={pair}>
@@ -138,7 +141,7 @@ export const CryptoList = () => {
             );
         })}
         </Slider>
-      <Dashboard price={price} data={pastdata}/>
+      <Dashboard price={price} data={pastdata} segment={timesegment}/>
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleMinute}> 5H </button>}
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleFifteen}> 3D </button>}
       {isDetail === true ? null : <button className='btn btn-outline-dark' onClick={handleHour}> 2W </button>}
