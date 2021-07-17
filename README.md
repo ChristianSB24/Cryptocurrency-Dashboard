@@ -1,44 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Cryptocurrency Dashboard
+Link to project: [Cryptocurrency_Dashboard](https://cryptocurrency-dashboard2.herokuapp.com/).
 
-## Available Scripts
+In this project a user is able to select some of the top cryptocurrencies and view historical and current pricing. 
 
-In the project directory, you can run:
+The frontend was developed with React and Redux and React Hooks for state management. Fetching calls were made to the Coinbase API to retrieve historical pricing. A websocket channel was created with the Coinbase Websocket Feed to retrieve real-time prices. The Chart.js library was utilized to render historical and real-time pricing instantly. Finally, React Slick was used to create a carousel for the cryptocurrencies that users can click on to render their charts.
 
-### `npm start`
+## Images of the application
+When first loading the application users can see a carousel of the top cryptocurrencies. 
+![Carousel](/images/dashboard1.PNG)
+After clicking on the currency users can see a chart of the pricing. They have the option to see different timesegments such as 5 hours, 3 days, 2 weeks, and 10 months. Only the 5 hour chart provides real-time pricing. 
+![Chart](/images/dashboard2.PNG)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Ongoing work
+In the future I want to add an API that users can set up alerts for different cryptocurrencies. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
